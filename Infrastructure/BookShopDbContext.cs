@@ -11,5 +11,7 @@ namespace Infrastructure
 
         public DbSet<Client> ClientTable { get; set; }
 
+        public DbSet<User> UserTable { get; set; }
+
     }
 }
