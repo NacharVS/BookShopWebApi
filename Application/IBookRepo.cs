@@ -6,8 +6,9 @@ namespace Application
     {
         Task<IEnumerable<Book>> GetBooksAsync();
 
-        Task<Book>GetBooksAsync(int id);
-        Task<Book> UpdateBookByIdAsync(int id);
+         Book GetBooks(int id);
+
+        void UpdateBookById(Book book);
 
         Task CreateBookAsync(Book book);
         void SaveChangesAsync();

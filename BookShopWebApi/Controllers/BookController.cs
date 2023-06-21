@@ -1,4 +1,6 @@
 ﻿using Application;
+using AutoMapper;
+using BookShopWebApi.DTOs;
 using Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +12,12 @@ namespace BookShopWebApi.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepo _bookRepo;
+        private readonly IMapper _bookMapper;
 
-        public BookController(IBookRepo bookRepo)
+        public BookController(IBookRepo bookRepo, IMapper mapper)
         {
             _bookRepo = bookRepo;
+            _bookMapper = mapper;
         }
 
         [HttpGet("GetAllBooks")]
@@ -30,5 +34,24 @@ namespace BookShopWebApi.Controllers
             _bookRepo.SaveChangesAsync();
             return Ok();
         }
+
+        [HttpPut("UpdateBookById")]
+        public IActionResult UpdateBook(int id, BookUpdateDTO updatedBook)
+        {
+            var bookFromRepo = _bookRepo.GetBooks(id);
+            if(bookFromRepo == null)
+            {
+                return NotFound();  
+            }
+            else
+            {
+                _bookMapper.Map(updatedBook, bookFromRepo);
+                _bookRepo.UpdateBookById(bookFromRepo);
+                _bookRepo.SaveChangesAsync();
+                _bookRepo.SaveChangesAsync();
+                return Ok();
+            }
+        }
+
     }
 }
