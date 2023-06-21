@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IBookRepo, BookRepo>();
+builder.Services.AddTransient<IClientRepo, ClientRepo>();
 
 var app = builder.Build();
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    internal class ClientRepo : IClientRepo
+    public class ClientRepo : IClientRepo
     {
         private readonly BookShopDbContext _dbContext;
 
@@ -23,7 +23,7 @@ namespace Infrastructure
             return await _dbContext.ClientTable.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Client>> GetClients() => await _dbContext.ClientTable.ToListAsync()
+        public async Task<IEnumerable<Client>> GetClients() => await _dbContext.ClientTable.ToListAsync();
 
 
 
