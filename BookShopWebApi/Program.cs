@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IBookRepo, BookRepo>();
 builder.Services.AddTransient<IClientRepo, ClientRepo>();
+builder.Services.AddTransient<IUserRepo, UserRepo>();
 builder.Services.AddAutoMapper(typeof(BookShopMapper));
 
 var app = builder.Build();

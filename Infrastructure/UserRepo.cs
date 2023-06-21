@@ -3,7 +3,7 @@ using Core;
 
 namespace Infrastructure
 {
-    internal class UserRepo : IUserRepo
+    public class UserRepo : IUserRepo
     {
         private readonly BookShopDbContext _context;
         public UserRepo(BookShopDbContext context)
@@ -19,6 +19,11 @@ namespace Infrastructure
         public void Registration(User user)
         {
             _context.UserTable.Add(user);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

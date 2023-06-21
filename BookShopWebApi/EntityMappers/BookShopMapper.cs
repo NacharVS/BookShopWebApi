@@ -10,6 +10,7 @@ namespace BookShopWebApi.EntityMappers
         {
             CreateMap<Book, BookReadDTO>().ReverseMap();
             CreateMap<Book, BookUpdateDTO>().ReverseMap();
+            CreateMap<User, UserCreateDTO>().ReverseMap();
         }
     }
 }
