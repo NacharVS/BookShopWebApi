@@ -9,5 +9,7 @@ namespace Infrastructure
 
         public DbSet<Book> BookTable { get; set; }
 
+        public DbSet<Client> ClientTable { get; set; }
+
     }
 }
