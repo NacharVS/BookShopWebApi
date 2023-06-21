@@ -11,6 +11,7 @@ namespace Application
         void UpdateBookById(Book book);
 
         Task CreateBookAsync(Book book);
+        void DeleteBookAsync(Book book);
         void SaveChangesAsync();
     }
 }

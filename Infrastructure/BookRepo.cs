@@ -29,6 +29,11 @@ namespace Infrastructure
             return book.Entity;
         }
 
+        public void DeleteBookAsync(Book book)
+        {
+           _dbContext.BookTable.Remove(book);
+        }
+
         public Book GetBooks(int id)
         {
             return _dbContext.BookTable.Find(id);

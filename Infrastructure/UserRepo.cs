@@ -13,7 +13,8 @@ namespace Infrastructure
 
         public User Authorisation(string login, string password)
         {
-            return _context.UserTable.Find(login, password);
+
+            return _context.UserTable.FirstOrDefault(x => x.Login == login && x.Password == password);
         }
 
         public void Registration(User user)

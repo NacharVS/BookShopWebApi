@@ -35,5 +35,19 @@ namespace BookShopWebApi.Controllers
                 return Ok();
             }
         }
+
+        [HttpGet] 
+        public IActionResult Authorisation(string autLogin, string autPassword) 
+        {
+            var user = _user.Authorisation(autLogin, autPassword);
+            if(user == null)
+            {
+                return NotFound("User not found");
+            }
+            else
+            {
+                return Ok(user);
+            }
+        }
     }
 }

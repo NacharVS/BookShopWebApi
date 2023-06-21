@@ -53,5 +53,14 @@ namespace BookShopWebApi.Controllers
             }
         }
 
+        [HttpDelete]
+        public ActionResult DeleteBook(int id)
+        {
+            var bookForDel = _bookRepo.GetBooks(id);
+            _bookRepo.DeleteBookAsync(bookForDel);
+            _bookRepo.SaveChangesAsync();
+            return Ok();
+        }
+
     }
 }
