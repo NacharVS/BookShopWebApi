@@ -24,10 +24,6 @@ namespace Infrastructure
             return book.Entity;
         }
 
-        public void CreateBookTest(Book book)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<IEnumerable<Book>> GetBooksAsync() => await _dbContext.BookTable.ToListAsync();
 
@@ -41,5 +37,9 @@ namespace Infrastructure
             _dbContext.SaveChanges();
         }
 
+        public Task<Book> UpdateBookByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,6 +2,8 @@ using Application;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
+using BookShopWebApi.EntityMappers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IBookRepo, BookRepo>();
 builder.Services.AddTransient<IClientRepo, ClientRepo>();
+
+builder.Services.AddAutoMapper(typeof(BookShopMapper));
 
 var app = builder.Build();
 
