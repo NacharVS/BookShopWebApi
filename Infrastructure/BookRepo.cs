@@ -1,28 +1,33 @@
 ﻿using Application;
 using Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
     public class BookRepo : IBookRepo
     {
-        public Task CreateBookAsync(Book book)
+        private readonly BookShopDbContext _dbContext;
+
+        public BookRepo(BookShopDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<IEnumerable<Book>> GetBooksAsync()
+        public async Task CreateBookAsync(Book book)
         {
-            throw new NotImplementedException();
+            await _dbContext.BookTable.AddAsync(book);
         }
 
-        public Task<Book> GetBooksAsync(string id)
+        public async Task<IEnumerable<Book>> GetBooksAsync() => await _dbContext.BookTable.ToListAsync();
+
+        public async Task<Book> GetBooksAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.BookTable.FirstAsync(x => x.Id == id);
         }
 
         public void SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Application
     {
         Task<IEnumerable<Book>> GetBooksAsync();
 
-        Task<Book>GetBooksAsync(string id);
+        Task<Book>GetBooksAsync(int id);
 
         Task CreateBookAsync(Book book);
 
