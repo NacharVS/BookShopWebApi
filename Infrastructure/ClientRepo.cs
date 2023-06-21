@@ -1,28 +1,41 @@
 ﻿using Application;
 using Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
     internal class ClientRepo : IClientRepo
     {
-        public Task<Client> CreateClientAsync()
+        private readonly BookShopDbContext _dbContext;
+
+        public ClientRepo(BookShopDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<Client> GetClientByIdAsync(int id)
+        public async Task CreateClientAsync(Client client)
         {
-            throw new NotImplementedException();
+            await _dbContext.ClientTable.AddAsync(client);
         }
 
-        public Task<IEnumerable<Book>> GetListOfWishesByNameAsync(string name)
+        public async Task<Client> GetClientByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.ClientTable.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<Client>> GetClients() => await _dbContext.ClientTable.ToListAsync()
+
+
+
+        public async Task<IEnumerable<Book>> GetListOfWishesByNameAsync(string name)
+        {
+            var list =  await _dbContext.ClientTable.FirstOrDefaultAsync<Client>(x=>x.Name == name);
+            return list.ListOfWishes;
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _dbContext.SaveChanges();
         }
     }
 }

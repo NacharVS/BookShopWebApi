@@ -4,8 +4,9 @@ namespace Application
 {
     public interface IClientRepo
     {
+        Task<IEnumerable<Client>> GetClients();
         Task<Client> GetClientByIdAsync(int id);
-        Task<Client> CreateClientAsync();
+        Task CreateClientAsync(Client client);
         Task<IEnumerable<Book>> GetListOfWishesByNameAsync(string name);
 
         void SaveChanges();

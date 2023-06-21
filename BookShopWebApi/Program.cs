@@ -1,3 +1,4 @@
+using Application;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,7 @@ builder.Services.AddDbContext<BookShopDbContext>(opt => opt.UseSqlServer(connect
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-
+builder.Services.AddTransient<IBookRepo, BookRepo>();
 
 var app = builder.Build();
 
