@@ -9,7 +9,6 @@ namespace Application
         Task<Book>GetBooksAsync(int id);
 
         Task CreateBookAsync(Book book);
-
         void SaveChangesAsync();
     }
 }

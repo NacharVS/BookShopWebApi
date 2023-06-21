@@ -18,6 +18,17 @@ namespace Infrastructure
             await _dbContext.BookTable.AddAsync(book);
         }
 
+        public async Task<Book> CreateBookAsyncTest(Book bookToSend)
+        {
+            var book = await _dbContext.BookTable.AddAsync(bookToSend);
+            return book.Entity;
+        }
+
+        public void CreateBookTest(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Book>> GetBooksAsync() => await _dbContext.BookTable.ToListAsync();
 
         public async Task<Book> GetBooksAsync(int id)
@@ -29,5 +40,6 @@ namespace Infrastructure
         {
             _dbContext.SaveChanges();
         }
+
     }
 }

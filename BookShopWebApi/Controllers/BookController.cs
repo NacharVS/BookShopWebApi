@@ -22,5 +22,13 @@ namespace BookShopWebApi.Controllers
             var books = await _bookRepo.GetBooksAsync();
             return Ok(books);
         }
+
+        [HttpPost("SendBook")]
+        public async Task<ActionResult> SendNewBook(Book book)
+        {
+           await _bookRepo.CreateBookAsync(book);
+            _bookRepo.SaveChangesAsync();
+            return Ok();
+        }
     }
 }
